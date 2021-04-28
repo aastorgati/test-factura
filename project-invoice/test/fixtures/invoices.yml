@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client_dni: MyString
+  debtor_dni: MyString
+  document_amount: 9.99
+  folio: 1
+  expiration_date: 2021-04-27
+
+two:
+  client_dni: MyString
+  debtor_dni: MyString
+  document_amount: 9.99
+  folio: 1
+  expiration_date: 2021-04-27
