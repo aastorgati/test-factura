@@ -12,7 +12,7 @@ end
 class Factura
     attr_accessor :client_dni, :debtor_dni, :document_amount, :folio, :expiration_date
     def initialize(client_dni='76329692-K', debtor_dni='77360390-1', document_amount=1000000, folio=75, 
-        expiration_date='2020-11-30')
+        expiration_date='2021-05-27')
         @client_dni = client_dni
         @debtor_dni = debtor_dni
         @document_amount = document_amount
@@ -47,9 +47,10 @@ if response_login.code == 200
         if response.code == 200
             res_cotizacion = JSON.parse(response)
             cotizacion = Cotizacion.new(res_cotizacion["document_rate"].to_f, res_cotizacion["commission"].to_f, res_cotizacion["advance_percent"].to_f)
-            
-            costo_financiamiento = factura.document_amount * (cotizacion.advance_percent/100) * ((cotizacion.document_rate/100) / 30 * 31)
-            giro_recibir = (factura.document_amount * (cotizacion.advance_percent/100)) - (factura.document_amount * (cotizacion.advance_percent / 100) * ((cotizacion.document_rate/100) / 30 * 31)) - (cotizacion.commission)
+            expiration_date = DateTime.parse(factura.expiration_date)
+            coaunt_days = (expiration_date.to_date - DateTime.now.to_date).to_i + 1
+            costo_financiamiento = factura.document_amount * (cotizacion.advance_percent/100) * ((cotizacion.document_rate/100) / 30 * coaunt_days)
+            giro_recibir = (factura.document_amount * (cotizacion.advance_percent/100)) - (costo_financiamiento + cotizacion.commission)
             excedentes = factura.document_amount - (factura.document_amount * (cotizacion.advance_percent/100))
 
             p "Costo de financiamiento: $#{costo_financiamiento}"
