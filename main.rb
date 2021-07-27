@@ -2,32 +2,32 @@ require 'rest-client'
 require 'json'
 
 class Usuario
-    attr_accessor :email, :password
-    def initialize(email='test@test.cl', password='admin123')
-        @email = email
-        @password = password
-    end
+  attr_accessor :email, :password
+  def initialize(email='test@test.cl', password='admin123')
+      @email = email
+      @password = password
+  end
 end
 
 class Factura
-    attr_accessor :client_dni, :debtor_dni, :document_amount, :folio, :expiration_date
-    def initialize(client_dni='76329692-K', debtor_dni='77360390-1', document_amount=1000000, folio=75, 
-        expiration_date='2021-05-27')
-        @client_dni = client_dni
-        @debtor_dni = debtor_dni
-        @document_amount = document_amount
-        @folio = folio
-        @expiration_date = expiration_date
-    end
+  attr_accessor :client_dni, :debtor_dni, :document_amount, :folio, :expiration_date
+  def initialize(client_dni='76329692-K', debtor_dni='77360390-1', document_amount=1000000, folio=75, 
+      expiration_date='2021-05-27')
+      @client_dni = client_dni
+      @debtor_dni = debtor_dni
+      @document_amount = document_amount
+      @folio = folio
+      @expiration_date = expiration_date
+  end
 end
 
 class Cotizacion
-    attr_accessor :document_rate, :commission, :advance_percent
-    def initialize(document_rate, commission, advance_percent)
-        @document_rate = document_rate
-        @commission = commission
-        @advance_percent = advance_percent
-    end
+  attr_accessor :document_rate, :commission, :advance_percent
+  def initialize(document_rate, commission, advance_percent)
+      @document_rate = document_rate
+      @commission = commission
+      @advance_percent = advance_percent
+  end
 end
 
 usuario = Usuario.new()
